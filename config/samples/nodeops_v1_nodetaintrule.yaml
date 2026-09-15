@@ -1,0 +1,20 @@
+apiVersion: nodeops.node.io/v1
+kind: NodeTaintRule
+metadata:
+  labels:
+    app.kubernetes.io/name: nodetaint-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: nodetaintrule-sample
+spec:
+  # 只关心 CPU 使用率，内存和磁盘不关心（设为0）
+  nodeSelector:
+    # 只匹配所有 worker 节点，可根据需要修改为具体 label
+    cce: test
+  threshold:
+    cpuUsagePercent: 70    # CPU 使用率超过 80% 就打污点
+    memUsagePercent: 0      # 不关心
+    diskUsagePercent: 0      # 不关心
+  taint:
+    key: node.cpu.high
+    value: "true"
+    effect: NoSchedule

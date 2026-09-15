@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- nodeops_v1_nodetaintrule.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
